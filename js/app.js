@@ -22,7 +22,6 @@ function repeatOperators() {
       input.value = string;
     } else if (
       string[0] == "+" ||
-      string[0] == "-" ||
       string[0] == "/" ||
       string[0] == "*" ||
       string[0] == "%" ||
@@ -52,11 +51,9 @@ function txtSize() {
 
 btn.forEach((button) => {
   button.addEventListener("click", (e) => {
-    if (e.target.innerHTML == "=") {
-      if (eval(string) != undefined) {
-        string = eval(string);
-        input.value = string;
-      }
+    if (e.target.innerHTML == "=" && input.value != "") {
+      string = eval(string);
+      input.value = string;
     } else if (e.target.innerHTML == "AC") {
       string = "";
       input.value = string;
@@ -75,11 +72,9 @@ btn.forEach((button) => {
 window.addEventListener("keydown", (ev) => {
   ev.stopPropagation();
   ev.preventDefault();
-  if (ev.key === "Enter" || ev.key === "=") {
-    if (eval(string) != undefined) {
-      string = eval(string);
-      input.value = string;
-    }
+  if (ev.key === "Enter" || (ev.key === "=" && input.value != "")) {
+    string = eval(string);
+    input.value = string;
   } else if (ev.key === "+") {
     string += "+";
     input.value = string;
